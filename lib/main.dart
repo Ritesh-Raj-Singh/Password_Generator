@@ -21,16 +21,40 @@ class _MainAppState extends State<MainApp> {
   bool lightNumber = true;
   bool lightChar = true;
   String password = 'Click generate';
+  ThemeMode thememode = ThemeMode.system;
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(),
+      darkTheme: ThemeData.dark(),
+      themeMode: thememode,
       home: Builder(
         builder: (context) {
           return Scaffold(
             appBar: AppBar(
               title: Text('Password Generator', style: TextStyle(color: Colors.black, fontSize: 25)),
               backgroundColor: Colors.lightBlueAccent,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      thememode = ThemeMode.dark;
+                    });
+                  }, 
+                  icon: Icon(Icons.dark_mode)
+                ),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      thememode = ThemeMode.light;
+                    });
+                  }, 
+                  icon: Icon(Icons.light_mode)
+                )
+              ],
             ),
             body: Column(
               children: <Widget>[
